@@ -23,11 +23,14 @@ class UsersTable
                     ->label('E-Posta')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('roles.name')
+                    ->label('Roller')
+                    ->limitList(3)
+                    ->listWithLineBreaks(),
                 TextColumn::make('created_at')
                     ->label('Oluşturulma Tarihi')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->dateTime('d M Y, H:i:s')
+                    ->sortable(),
             ])
             ->filters([
                 //

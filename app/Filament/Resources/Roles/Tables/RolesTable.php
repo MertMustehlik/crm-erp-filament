@@ -2,11 +2,12 @@
 
 namespace App\Filament\Resources\Roles\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Actions\DeleteAction;
+use Spatie\Permission\Models\Role;
+use Filament\Actions\Action;
 
 class RolesTable
 {
@@ -19,18 +20,18 @@ class RolesTable
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Oluşturulma Tarihi')
+                    ->dateTime('d M Y, H:i:s')
                     ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->visible(fn(Role $record) => $record->name !== 'Super Admin'),
+                DeleteAction::make()->visible(fn(Role $record) => $record->name !== 'Super Admin'),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }

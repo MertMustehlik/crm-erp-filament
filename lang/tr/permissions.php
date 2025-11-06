@@ -2,11 +2,13 @@
 
 return [
     'user' => 'Kullanıcı',
-    'user list'   => 'Kullanıcı Listesi',
+    'user view'   => 'Kullanıcı Görüntüle',
+    'user create' => 'Kullanıcı Oluştur',
     'user edit'   => 'Kullanıcı Düzenle',
     'user delete' => 'Kullanıcı Sil',
     'role' => 'Rol',
-    'role list'   => 'Rol Listesi',
+    'role view'   => 'Rol Görüntüle',
+    'role create' => 'Rol Oluştur',
     'role edit'   => 'Rol Düzenle',
     'role delete' => 'Rol Sil',
 ];

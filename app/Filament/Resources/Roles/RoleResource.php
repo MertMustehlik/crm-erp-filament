@@ -13,6 +13,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Spatie\Permission\Models\Role;
+use Illuminate\Database\Eloquent\Model;
 
 class RoleResource extends Resource
 {
@@ -51,5 +52,10 @@ class RoleResource extends Resource
             'create' => CreateRole::route('/create'),
             'edit' => EditRole::route('/{record}/edit'),
         ];
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->can('role delete');
     }
 }
