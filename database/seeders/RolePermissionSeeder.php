@@ -9,13 +9,9 @@ use Spatie\Permission\Models\Role;
 
 class RolePermissionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $role = Role::create(['name' => 'Super Admin']);
-
+        $role = Role::firstOrCreate(['name' => 'Super Admin']);
         $user = User::first();
         $user->assignRole($role);
 
@@ -31,6 +27,18 @@ class RolePermissionSeeder extends Seeder
                 'role create',
                 'role edit',
                 'role delete',
+            ],
+            'customer' => [
+                'customer view',
+                'customer create',
+                'customer edit',
+                'customer delete',
+            ],
+            'product' => [
+                'product view',
+                'product create',
+                'product edit',
+                'product delete',
             ],
         ];
 

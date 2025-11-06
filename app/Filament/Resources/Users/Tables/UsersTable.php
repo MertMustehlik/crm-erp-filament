@@ -26,6 +26,7 @@ class UsersTable
                 TextColumn::make('roles.name')
                     ->label('Roller')
                     ->limitList(3)
+                    ->sortable()
                     ->listWithLineBreaks(),
                 TextColumn::make('created_at')
                     ->label('Oluşturulma Tarihi')
