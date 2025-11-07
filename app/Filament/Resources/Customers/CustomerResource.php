@@ -64,10 +64,12 @@ class CustomerResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         $user = auth()->user();
+        $query = parent::getEloquentQuery();
+
         if (!$user->can('customer view') && $user->can('customer view own')) {
-            return parent::getEloquentQuery()->where('assigned_user_id', $user->id);
+            $query->where('assigned_user_id', $user->id);
         }
 
-        return parent::getEloquentQuery();
+        return $query;
     }
 }
