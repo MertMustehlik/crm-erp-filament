@@ -33,4 +33,20 @@ class EditRole extends EditRecord
             $this->redirect($this->getResource()::getUrl('index'));
         }
     }
+
+    /*public function mutateFormDataBeforeSave(array $data): array
+    {
+        if ($this->record->id === 1) {
+            Notification::make()
+                ->title('Super Admin rolü düzenlenemez')
+                ->body('Tüm sisteme erişim yetkisi vardır.')
+                ->icon('heroicon-o-x-circle')
+                ->iconColor('danger')
+                ->send();
+
+            $this->halt();
+        }
+
+        return $data;
+    }*/
 }

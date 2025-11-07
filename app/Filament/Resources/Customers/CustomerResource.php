@@ -16,17 +16,16 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use UnitEnum;
 
 class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
+    protected static string | UnitEnum | null $navigationGroup = 'Müşteri Yönetimi';
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationLabel = 'Müşteriler';
-
     protected static ?string $recordTitleAttribute = 'name';
-
     protected static ?string $modelLabel = 'Müşteri';
 
     public static function form(Schema $schema): Schema

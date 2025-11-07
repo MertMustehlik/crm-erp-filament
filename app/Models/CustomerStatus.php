@@ -10,10 +10,11 @@ class CustomerStatus extends Model
 {
     protected $fillable = [
         'name',
+        'color',
     ];
 
     public function customers(): HasMany
     {
-        return $this->hasMany(Customer::class);
+        return $this->hasMany(Customer::class, 'status_id');
     }
 }
