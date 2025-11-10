@@ -25,7 +25,7 @@ class CustomerResource extends Resource
     protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationLabel = 'Müşteriler';
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $recordTitleAttribute = 'email';
     protected static ?string $modelLabel = 'Müşteri';
 
     public static function form(Schema $schema): Schema

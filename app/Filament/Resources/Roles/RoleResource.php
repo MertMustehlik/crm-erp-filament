@@ -20,10 +20,7 @@ class RoleResource extends Resource
 
     protected static ?string $navigationLabel = 'Roller';
 
-    protected static ?string $recordTitleAttribute = 'name';
-
     protected static ?string $modelLabel = 'Rol';
-
 
     public static function form(Schema $schema): Schema
     {

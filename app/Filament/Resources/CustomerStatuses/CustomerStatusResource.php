@@ -20,7 +20,6 @@ class CustomerStatusResource extends Resource
     protected static string | UnitEnum | null $navigationGroup = 'Müşteri Yönetimi';
     protected static ?int $navigationSort = 2;
 
-    protected static ?string $recordTitleAttribute = 'name';
     protected static ?string $navigationLabel = 'Müşteri Durumları';
     protected static ?string $modelLabel = 'Müşteri Durumu';
 
