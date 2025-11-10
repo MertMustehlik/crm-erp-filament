@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -11,6 +12,10 @@ class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
+        if (!Schema::hasTable('roles') || !Role::query()->doesntExist() || !Permission::query()->doesntExist()) {
+            return;
+        }
+
         $role = Role::firstOrCreate(['name' => 'Super Admin']);
         $user = User::first();
         $user->assignRole($role);

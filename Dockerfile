@@ -22,5 +22,4 @@ COPY . .
 
 RUN composer install --no-interaction --optimize-autoloader
 
-# Laravel'i Railway'in verdiği portta çalıştır
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9000"]
+CMD php artisan migrate --force && php artisan db:seed && php artisan serve --host=0.0.0.0 --port=9000

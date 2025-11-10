@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             RolePermissionSeeder::class,
-            CustomerStatusSeeder::class,
+         //   CustomerStatusSeeder::class,
         ]);
 
-        Customer::create([
+        /*Customer::create([
            'type' => 'individual',
             'first_name' => 'Customer',
             'last_name' => '1',
@@ -42,6 +42,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '0987654321',
             'address' => '456 Elm St',
             'status_id' => 2,
-        ]);
+        ]);*/
     }
 }
