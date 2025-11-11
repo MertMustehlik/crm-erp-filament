@@ -6,6 +6,12 @@ Geliştirilebilir bir altyapı sunar.
 
 ---
 
+## 📷 Panel Görseli
+
+<img src="public/images/panel.png" alt="Admin Panel" width="1200"/>
+
+---
+
 ## 🚀 Özellikler
 
 ### ✅ Müşteri Yönetimi
