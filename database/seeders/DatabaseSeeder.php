@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Customer',
             'last_name' => '1',
             'email' => 'customer1@example.com',
-            'phone' => '1234567890',
+            'phone' => '+905536985598',
             'address' => '123 Main St',
             'status_id' => 1,
         ]);
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Customer',
             'last_name' => '2',
             'email' => 'customer2@example.com',
-            'phone' => '0987654321',
+            'phone' => '+905387695890',
             'address' => '456 Elm St',
             'status_id' => 2,
         ]);
