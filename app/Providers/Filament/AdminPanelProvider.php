@@ -60,6 +60,9 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Müşteri Yönetimi')
                     ->icon('heroicon-o-user-group'),
                 NavigationGroup::make()
+                    ->label('Fatura Yönetimi')
+                    ->icon('heroicon-o-document-text'),
+                NavigationGroup::make()
                     ->label('Ürün Yönetimi')
                     ->icon('heroicon-o-cube'),
                 NavigationGroup::make()

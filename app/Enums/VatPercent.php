@@ -12,10 +12,10 @@ enum VatPercent: int
     public function label(): string
     {
         return match ($this) {
-            self::ZERO   => '0%',
-            self::ONE    => '1%',
-            self::TEN    => '10%',
-            self::TWENTY => '20%',
+            self::ZERO   => '%0',
+            self::ONE    => '%1',
+            self::TEN    => '%10',
+            self::TWENTY => '%20',
         };
     }
 
