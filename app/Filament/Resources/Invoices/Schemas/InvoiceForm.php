@@ -34,6 +34,9 @@ class InvoiceForm
                     ->columnSpan(4)
                     ->searchable()
                     ->required()
+                    ->validationMessages([
+                        'required' => 'Müşteri seçimi zorunlu',
+                    ])
                     ->options(
                         Customer::query()
                             ->limit(20)
@@ -49,7 +52,7 @@ class InvoiceForm
                     ->getSearchResultsUsing(function (string $search): array {
                         return Customer::query()
                             ->where(function ($query) use ($search) {
-                                $query->whereRaw('CONCAT(first_name, " ", last_name) LIKE ?', ["%{$search}%"]);
+                                $query->whereRaw('CONCAT(first_name, " ", last_name) LIKE ?', ["%{$search}%"])->orWhere('company_name', 'like', "%{$search}%");
                             })
                             ->limit(10)
                             ->get()
@@ -67,7 +70,10 @@ class InvoiceForm
                     ->native(false)
                     ->displayFormat('d M Y')
                     ->default(now())
-                    ->required(),
+                    ->required()
+                    ->validationMessages([
+                        'required' => 'Fatura tarihi zorunlu',
+                    ]),
                 Section::make('Fatura Kalemleri')
                     ->columnSpan('full')
                     ->schema([
@@ -83,6 +89,10 @@ class InvoiceForm
                                     ->label('Ürün Seçimi')
                                     ->columnSpan(2)
                                     ->searchable()
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Ürün seçimi zorunlu',
+                                    ])
                                     ->options(Product::query()->limit(10)->orderBy('id', 'desc')->get()->pluck('name', 'id'))
                                     ->getSearchResultsUsing(function (string $search): array {
                                         return Product::query()->where('name', 'like', "%{$search}%")
@@ -108,6 +118,12 @@ class InvoiceForm
                                     ->numeric()
                                     ->label('Adet')
                                     ->default(1)
+                                    ->required()
+                                    ->minValue(1)
+                                    ->validationMessages([
+                                        'required' => 'Adet zorunlu',
+                                        'min' => 'Adet en az 1 olmalıdır',
+                                    ])
                                     ->reactive()
                                     ->debounce(1000)
                                     ->afterStateUpdated(function ($state, callable $set, callable $get) {
@@ -120,6 +136,11 @@ class InvoiceForm
                                     ->reactive()
                                     ->debounce(1000)
                                     ->prefix('₺')
+                                    ->required()
+                                    ->minValue(0)
+                                    ->validationMessages([
+                                        'required' => 'Birim fiyat zorunlu',
+                                    ])
                                     ->afterStateHydrated(fn($set, $get) => $set('price', $get('price') ? number_format($get('price'), 2, ',', '.') : null))
                                     ->dehydrateStateUsing(fn($state) => floatval(str_replace(['.', ','], ['', '.'], $state)))
                                     ->afterStateUpdated(function ($state, callable $set, callable $get) {
@@ -131,6 +152,10 @@ class InvoiceForm
                                     ->native(false)
                                     ->reactive()
                                     ->debounce(1000)
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'KDV oranı zorunlu',
+                                    ])
                                     ->afterStateHydrated(function ($state, callable $set, callable $get) {
                                         self::calculateItem($set, $get);
                                     })
@@ -163,27 +188,18 @@ class InvoiceForm
                             ->default('₺0,00')
                             ->reactive()
                             ->readOnly()
-                            ->dehydrated(false)
-                            ->extraAttributes([
-                                'style' => 'background-color: #F7F7F6; font-weight: 500;',
-                            ]),
+                            ->dehydrated(false),
                         TextInput::make('invoice_vat_amount')
                             ->label('Vergi Toplamı')
                             ->default('₺0,00')
                             ->reactive()
                             ->readOnly()
-                            ->dehydrated(false)
-                            ->extraAttributes([
-                                'style' => 'background-color: #F7F7F6; font-weight: 500;',
-                            ]),
+                            ->dehydrated(false),
                         TextInput::make('invoice_grand_total')
                             ->label('Genel Toplam')
                             ->default('₺0,00')
                             ->reactive()
-                            ->dehydrated(false)
-                            ->extraAttributes([
-                                'style' => 'background-color: #F7F7F6; font-weight: 500;',
-                            ]),
+                            ->dehydrated(false),
                     ]),
             ]);
     }

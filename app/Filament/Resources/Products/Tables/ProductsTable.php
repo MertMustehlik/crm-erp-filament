@@ -34,7 +34,7 @@ class ProductsTable
                 TextColumn::make('stock')
                     ->label('Stok')
                     ->numeric()
-                    ->suffix(fn($record) => " {$record->unit->name}")
+                    ->suffix(fn($record) => " {$record?->unit?->name}")
                     ->sortable(),
             ])
             ->filters([

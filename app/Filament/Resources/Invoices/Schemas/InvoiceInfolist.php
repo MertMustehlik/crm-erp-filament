@@ -12,26 +12,8 @@ class InvoiceInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('number'),
-                TextEntry::make('type')
-                    ->badge(),
-                TextEntry::make('customer.id')
-                    ->label('Customer')
-                    ->placeholder('-'),
-                TextEntry::make('total')
-                    ->numeric(),
-                TextEntry::make('vat_total')
-                    ->numeric(),
-                TextEntry::make('grand_total')
-                    ->numeric(),
-                TextEntry::make('invoice_date')
-                    ->date(),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                TextEntry::make('number')->label('Fatura No'),
+                TextEntry::make('customer.name')->label('Müşteri'),
             ]);
     }
 }

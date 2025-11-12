@@ -30,11 +30,6 @@ class InvoiceResource extends Resource
         return InvoiceForm::configure($schema);
     }
 
-    public static function infolist(Schema $schema): Schema
-    {
-        return InvoiceInfolist::configure($schema);
-    }
-
     public static function table(Table $table): Table
     {
         return InvoicesTable::configure($table);

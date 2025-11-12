@@ -15,7 +15,6 @@ class EditInvoice extends EditRecord
     {
         return [
             ViewAction::make(),
-            DeleteAction::make(),
         ];
     }
 }

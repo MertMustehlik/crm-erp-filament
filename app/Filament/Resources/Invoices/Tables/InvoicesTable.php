@@ -2,12 +2,16 @@
 
 namespace App\Filament\Resources\Invoices\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use App\Models\Customer;
+use Filament\Tables\Table;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 
 class InvoicesTable
 {
@@ -31,11 +35,41 @@ class InvoicesTable
                     ->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('customer_id')
+                    ->label('Müşteri')
+                    ->native(false)
+                    ->searchable()
+                    ->options(
+                        Customer::query()
+                            ->limit(20)
+                            ->orderBy('id', 'desc')
+                            ->get()
+                            ->mapWithKeys(function ($customer) {
+                                return [
+                                    $customer->id => $customer->name,
+                                ];
+                            })
+                            ->toArray()
+                    )
+                    ->getSearchResultsUsing(function (string $search): array {
+                        return Customer::query()
+                            ->where(function ($query) use ($search) {
+                                $query->whereRaw('CONCAT(first_name, " ", last_name) LIKE ?', ["%{$search}%"])->orWhere('company_name', 'like', "%{$search}%");
+                            })
+                            ->limit(10)
+                            ->get()
+                            ->mapWithKeys(function ($customer) {
+                                return [
+                                    $customer->id => $customer->name,
+                                ];
+                            })
+                            ->toArray();
+                    }),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

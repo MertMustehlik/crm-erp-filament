@@ -43,6 +43,6 @@ class Invoice extends Model
 
     public static function generateNumber(): string
     {
-        return date('Ymd') . str_pad(self::count() + 1, 4, '0', STR_PAD_LEFT);
+        return date('Y') . str_pad(self::count() + 1, 4, '0', STR_PAD_LEFT);
     }
 }
