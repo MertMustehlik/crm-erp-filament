@@ -10,8 +10,8 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 
 class InvoicesTable
 {
@@ -23,8 +23,7 @@ class InvoicesTable
                     ->label('Fatura No')
                     ->searchable(),
                 TextColumn::make('customer.name')
-                    ->label('Müşteri')
-                    ->searchable(),
+                    ->label('Müşteri'),
                 TextColumn::make('grand_total')
                     ->label('Genel Toplam')
                     ->money('TRY')
@@ -65,6 +64,8 @@ class InvoicesTable
                             })
                             ->toArray();
                     }),
+                DateRangeFilter::make('invoice_date')
+                    ->label('Fatura Tarihi'),
             ])
             ->recordActions([
                 ViewAction::make(),
