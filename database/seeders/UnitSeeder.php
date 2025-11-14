@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Unit;
+use Illuminate\Support\Facades\Schema;
 
 class UnitSeeder extends Seeder
 {
@@ -13,6 +14,11 @@ class UnitSeeder extends Seeder
      */
     public function run(): void
     {
+        if (Schema::hasTable('units') && Unit::query()->exists()) {
+            return;
+        }
+
+
         $data = [
             ['name' => 'Adet'],
             ['name' => 'Metre'],

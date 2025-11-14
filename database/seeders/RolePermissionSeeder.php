@@ -12,7 +12,7 @@ class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        if (!Schema::hasTable('roles') || !Role::query()->doesntExist() || !Permission::query()->doesntExist()) {
+        if (!Schema::hasTable('roles') || Role::query()->exists() || Permission::query()->exists()) {
             return;
         }
 
