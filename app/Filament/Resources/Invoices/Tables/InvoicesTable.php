@@ -33,6 +33,7 @@ class InvoicesTable
                     ->date('d M Y')
                     ->sortable(),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('customer_id')
                     ->label('Müşteri')
@@ -40,7 +41,6 @@ class InvoicesTable
                     ->searchable()
                     ->options(
                         Customer::query()
-                            ->limit(20)
                             ->orderBy('id', 'desc')
                             ->get()
                             ->mapWithKeys(function ($customer) {
@@ -49,21 +49,7 @@ class InvoicesTable
                                 ];
                             })
                             ->toArray()
-                    )
-                    ->getSearchResultsUsing(function (string $search): array {
-                        return Customer::query()
-                            ->where(function ($query) use ($search) {
-                                $query->whereRaw('CONCAT(first_name, " ", last_name) LIKE ?', ["%{$search}%"])->orWhere('company_name', 'like', "%{$search}%");
-                            })
-                            ->limit(10)
-                            ->get()
-                            ->mapWithKeys(function ($customer) {
-                                return [
-                                    $customer->id => $customer->name,
-                                ];
-                            })
-                            ->toArray();
-                    }),
+                    ),
                 DateRangeFilter::make('invoice_date')
                     ->label('Fatura Tarihi'),
             ])

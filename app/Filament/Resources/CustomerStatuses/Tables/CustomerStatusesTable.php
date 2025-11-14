@@ -32,6 +32,7 @@ class CustomerStatusesTable
                     ->label('Oluşturulma Tarihi')
                     ->dateTime('d M Y, H:i:s'),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

@@ -23,6 +23,7 @@ class RolesTable
                     ->dateTime('d M Y, H:i:s')
                     ->searchable(),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

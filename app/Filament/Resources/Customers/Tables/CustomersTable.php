@@ -36,6 +36,7 @@ class CustomersTable
                     ->badge()
                     ->color(fn($record) => $record->status?->color ?? 'primary'),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

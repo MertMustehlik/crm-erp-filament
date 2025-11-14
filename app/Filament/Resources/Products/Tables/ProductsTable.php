@@ -37,6 +37,7 @@ class ProductsTable
                     ->suffix(fn($record) => " {$record?->unit?->name}")
                     ->sortable(),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('unit_id')
                     ->label('Birim')
