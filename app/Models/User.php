@@ -34,9 +34,11 @@ class User extends Authenticatable
         ];
     }
 
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['name', 'email']);
+            ->logOnly(['name', 'email'])
+            ->dontLogIfAttributesChangedOnly(['password', 'remember_token', 'updated_at']);
     }
 }
