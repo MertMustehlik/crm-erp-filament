@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price', 11, 2);
             $table->integer('vat_percent')->default(0);
-            $table->decimal('stock', 11, 2)->default(0);
 
             $table->foreignId('unit_id')->nullable()->constrained()->nullOnDelete();
             //$table->foreignId('category_id')->nullable()->constrained('product_categories')->nullOnDelete();

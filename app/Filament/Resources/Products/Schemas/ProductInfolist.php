@@ -21,9 +21,6 @@ class ProductInfolist
                     ->label('KDV')
                     ->suffix('%')
                     ->numeric(),
-                TextEntry::make('stock')
-                    ->label('Stok')
-                    ->numeric(),
                 TextEntry::make('unit.name')
                     ->label('Birim')
                     ->placeholder('-'),

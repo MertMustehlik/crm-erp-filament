@@ -21,7 +21,6 @@ class ProductSeeder extends Seeder
                     'name' => 'Boru Çelik 6 inch',
                     'price' => 1200.50,
                     'vat_percent' => 20,
-                    'stock' => 50,
                     'unit_id' => 1,
                 ],
                 [
@@ -29,7 +28,6 @@ class ProductSeeder extends Seeder
                     'name' => 'Bentonit Çamuru (Drilling Mud)',
                     'price' => 250.75,
                     'vat_percent' => 20,
-                    'stock' => 200,
                     'unit_id' => 2,
                 ],
                 [
@@ -37,7 +35,6 @@ class ProductSeeder extends Seeder
                     'name' => 'Pompa Motoru 500HP',
                     'price' => 15000.00,
                     'vat_percent' => 20,
-                    'stock' => 5,
                     'unit_id' => 3,
                 ],
                 [
@@ -45,7 +42,6 @@ class ProductSeeder extends Seeder
                     'name' => 'Basınç Ölçer Manometre',
                     'price' => 350.00,
                     'vat_percent' => 20,
-                    'stock' => 30,
                     'unit_id' => 3,
                 ],
                 [
@@ -53,7 +49,6 @@ class ProductSeeder extends Seeder
                     'name' => 'Vanalar (Çeşitli Boyut)',
                     'price' => 500.00,
                     'vat_percent' => 20,
-                    'stock' => 40,
                     'unit_id' => 3,
                 ],
                 [
@@ -61,7 +56,6 @@ class ProductSeeder extends Seeder
                     'name' => 'Hidrokarbon Tankı 1000L',
                     'price' => 2000.00,
                     'vat_percent' => 20,
-                    'stock' => 10,
                     'unit_id' => 1,
                 ],
             ];
@@ -72,7 +66,6 @@ class ProductSeeder extends Seeder
                     'name' => $product['name'],
                     'price' => $product['price'],
                     'vat_percent' => $product['vat_percent'],
-                    'stock' => $product['stock'],
                     'unit_id' => $product['unit_id'],
                 ]);
             }

@@ -31,11 +31,6 @@ class ProductsTable
                     ->numeric()
                     ->prefix("%")
                     ->sortable(),
-                TextColumn::make('stock')
-                    ->label('Stok')
-                    ->numeric()
-                    ->suffix(fn($record) => " {$record?->unit?->name}")
-                    ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
